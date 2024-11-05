@@ -6,6 +6,27 @@
     <title>Pizzabot</title>
   </head>
   <body>
+    <div>
+      <div>
+        <h1>Menu</h1>
+        <h4>Vegeterian Pizza 80kr</h4>
+        <h4>Hawaiian Pizza 80kr</h4>
+        <h4>Pepperoni Pizza 80kr</h4>
+      </div>
+      <div>
+        <form id="pizzaForm">
+          <label for="order">What pizza?</label>
+          <input type="text" name="order" id="order" />
+          <label for="amount">How many?</label>
+          <input type="number" name="quantity" id="amount" />
+          <button type="submit" id="btn">Submit Order</button>
+        </form>
+        <div id="totalPrice"></div>
+        <div id="totalTime"></div>
+        <div id="wrongInput"></div>
+      </div>
+    </div>
     <script src="code.js"></script>
+    <!-- <script src="pizzabot.js"></script> -->
   </body>
 </html>

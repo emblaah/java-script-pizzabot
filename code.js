@@ -2,10 +2,6 @@ const vegetarian = "Vegetarian Pizza";
 const hawaiian = "Hawaiian Pizza";
 const pepperoni = "Pepperoni Pizza";
 
-alert(
-  `Hey! Happy to serve your pizza. On our menu we have ${vegetarian}, ${hawaiian}, and ${pepperoni}`
-);
-
 const pizzaPrice = 80;
 
 function checkOrderName(orderName) {
@@ -15,11 +11,13 @@ function checkOrderName(orderName) {
     orderName === pepperoni.toLowerCase()
   );
 }
+
 function totalCost(orderQuantity) {
   let sum = 0;
   sum = orderQuantity * pizzaPrice;
   return sum;
 }
+
 function cookingTime(orderQuantity) {
   if (orderQuantity === 1 || orderQuantity === 2) {
     return 10;
@@ -30,27 +28,24 @@ function cookingTime(orderQuantity) {
   }
 }
 
-let orderName = prompt(
-  `Enter the name of the pizza you want to order today: (${vegetarian}, ${hawaiian}, or ${pepperoni})`
-).toLowerCase();
+const pizzaName = document.getElementById("order");
+const amount = document.getElementById("amount");
+const btn = document.getElementById("btn");
+const totalPrice = document.getElementById("totalPrice");
+const totalTime = document.getElementById("totalTime");
+const wrongPizza = document.getElementById("wrongInput");
 
-while (true) {
+btn.addEventListener("click", () => {
+  event.preventDefault();
+  const orderName = pizzaName.value.toLowerCase();
   if (checkOrderName(orderName)) {
-    const orderQuantity = prompt(`How many ${orderName} do you want`);
-
+    const orderQuantity = parseInt(amount.value, 10);
+    const orderTotal = totalCost(orderQuantity);
+    totalPrice.textContent = `Total: ${orderTotal} kr`;
     const time = cookingTime(orderQuantity);
-
-    alert(`The pizzas will take ${time} minutes.`);
-
-    const orderTotal = totalCost(orderQuantity); //Price
-    alert(
-      `Great, I will get started on your ${orderName} right away, it will cost ${orderTotal} kr.`
-    );
-    break;
+    totalTime.textContent = `ETA: ${time} minutes.`;
+    wrongPizza.textContent = ``;
   } else {
-    alert(`Invalid pizza name. Please enter a valid pizza.`);
-    orderName = prompt(
-      `Enter the name of the pizza you want to order today: (${vegetarian}, ${hawaiian}, or ${pepperoni})`
-    ).toLowerCase();
+    wrongPizza.textContent = `Pizza not on the menu.`;
   }
-}
+});
